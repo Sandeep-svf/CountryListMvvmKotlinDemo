@@ -75,8 +75,11 @@ dependencies {
     implementation "com.google.dagger:dagger:$daggerVersion"
     implementation "com.google.dagger:dagger-android-support:$daggerVersion"
     implementation "androidx.legacy:legacy-support-v4:1.0.0"
-    annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
-    annotationProcessor "com.google.dagger:dagger-android-processor:$daggerVersion"
+    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
+    kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
 
     testImplementation "org.mockito:mockito-inline:$mockitoVersion"
+
+    //Resolve jdk8+ Generation Annotations - javax annotation does not exist
+    compileOnly 'com.github.pengrad:jdk9-deps:1.0'
 }

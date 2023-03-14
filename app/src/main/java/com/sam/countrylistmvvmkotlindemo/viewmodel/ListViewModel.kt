@@ -18,7 +18,7 @@ class ListViewModel : ViewModel() {
     // when view model is close we need to close the connection...with the help of this variable....
 
     val countries = MutableLiveData<List<Country>>()  //
-    val countryLoadError = MutableLiveData<Boolean>()   // true menas error false means no error
+    val countryLoadError = MutableLiveData<Boolean>()   // true means error false means no error
     val loading = MutableLiveData<Boolean>()    // it define is data loading from server
 
     fun refresh() {
@@ -49,7 +49,7 @@ class ListViewModel : ViewModel() {
         disposable.add(
             countriesService.getCountries() // call countriesSerives with fun getcountries which return single list country
                 // we don't want to call this info from the main thread of the application...
-                .subscribeOn(Schedulers.newThread()) // all process getcountries does on the new thread
+                .subscribeOn(Schedulers.newThread()) // all process get countries does on the new thread
                 .observeOn(AndroidSchedulers.mainThread()) // info need to be same thread user is seeing which is main thread
                 // getting info on the main thread here...
                 .subscribeWith(object : DisposableSingleObserver<List<Country>>(){ // what we will fo when we get info...
